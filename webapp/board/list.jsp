@@ -1,5 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
+ 
+ 
+ 
+ <fmt:setBundle basename="june.jdbc"/>
+<fmt:message key="url" var="url" />
+<fmt:message key="drv" var="drv" />
+<fmt:message key="usr" var="usr" />
+<fmt:message key="pwd" var="pwd" />
+ 
+ <sql:setDataSource url="${url}" driver="${drv}"
+  user="${usr}" password="${pwd}" var="mariadb" />
+  
+ <sql:query var="rs" dataSource="${mariadb}">
+ 	select bdno, title, userid, regdate, views
+ 	from board order by bdno desc
+ </sql:query>   
+    
 <!doctype html>
 <html lang="ko">
     <head>
@@ -40,42 +62,31 @@
                     <col style="width:10%">
                 </colgroup>                
                 <thead>
-                    
+                
+                 
                 <tr><td colspan="5" class="newbtn">
-                    <button type="button">글쓰기</button></td></tr> 
+                  <c:if test="${not empty sessionScope.userid}"> 
+                    <button type="button" id="newbtn">글쓰기</button>
+                   </c:if>  
+                   <c:if test="${empty sessionScope.userid}"> 
+                    &nbsp;
+                   </c:if>  
+                    </td></tr> 
+                  
                     
                 <tr><th>번호</th><th>제목</th><th>작성자</th>
                     <th>작성일</th><th>조회</th></tr></thead>
 
                 <tbody>
-                <tr><td>1</td><td>시간은 금이라구, 친구! 진짜라구,친구! 정말이라구, 친구! 참말이라구, 친구!</td><td>siestageek</td>
-                    <td>2014-05-01</td><td>777</td></tr>
-                <tr><td>2</td><td>시간은 금이라구, 친구! 진짜라구,친구! 정말이라구, 친구! 참말이라구, 친구!</td><td>siestageek</td>
-                    <td>2014-05-01</td><td>777</td></tr>
-                     <tr><td>3</td><td>시간은 금이라구, 친구! 진짜라구,친구! 정말이라구, 친구! 참말이라구, 친구!</td><td>siestageek</td>
-                    <td>2014-05-01</td><td>777</td></tr>
-                     <tr><td>4</td><td>시간은 금이라구, 친구! 진짜라구,친구! 정말이라구, 친구! 참말이라구, 친구!</td><td>siestageek</td>
-                    <td>2014-05-01</td><td>777</td></tr>
-                     <tr><td>5</td><td>시간은 금이라구, 친구! 진짜라구,친구! 정말이라구, 친구! 참말이라구, 친구!</td><td>siestageek</td>
-                    <td>2014-05-01</td><td>777</td></tr>
-                     <tr><td>6</td><td>시간은 금이라구, 친구! 진짜라구,친구! 정말이라구, 친구! 참말이라구, 친구!</td><td>siestageek</td>
-                    <td>2014-05-01</td><td>777</td></tr>
-                     <tr><td>7</td><td>시간은 금이라구, 친구! 진짜라구,친구! 정말이라구, 친구! 참말이라구, 친구!</td><td>siestageek</td>
-                    <td>2014-05-01</td><td>777</td></tr>
-                     <tr><td>8</td><td>시간은 금이라구, 친구! 진짜라구,친구! 정말이라구, 친구! 참말이라구, 친구!</td><td>siestageek</td>
-                    <td>2014-05-01</td><td>777</td></tr>
-                     <tr><td>9</td><td>시간은 금이라구, 친구! 진짜라구,친구! 정말이라구, 친구! 참말이라구, 친구!</td><td>siestageek</td>
-                    <td>2014-05-01</td><td>777</td></tr>
-                     <tr><td>10</td><td>시간은 금이라구, 친구! 진짜라구,친구! 정말이라구, 친구! 참말이라구, 친구!</td><td>siestageek</td>
-                    <td>2014-05-01</td><td>777</td></tr>
-                     <tr><td>11</td><td>시간은 금이라구, 친구! 진짜라구,친구! 정말이라구, 친구! 참말이라구, 친구!</td><td>siestageek</td>
-                    <td>2014-05-01</td><td>777</td></tr>
-                     <tr><td>12</td><td>시간은 금이라구, 친구! 진짜라구,친구! 정말이라구, 친구! 참말이라구, 친구!</td><td>siestageek</td>
-                    <td>2014-05-01</td><td>777</td></tr> <tr><td>13</td><td>시간은 금이라구, 친구! 진짜라구,친구! 정말이라구, 친구! 참말이라구, 친구!</td><td>siestageek</td>
-                    <td>2014-05-01</td><td>777</td></tr> <tr><td>14</td><td>시간은 금이라구, 친구! 진짜라구,친구! 정말이라구, 친구! 참말이라구, 친구!</td><td>siestageek</td>
-                    <td>2014-05-01</td><td>777</td></tr>
-                     <tr><td>15</td><td>시간은 금이라구, 친구! 진짜라구,친구! 정말이라구, 친구! 참말이라구, 친구!</td><td>siestageek</td>
-                    <td>2014-05-01</td><td>777</td></tr>
+                
+                <c:forEach var="r" items="${rs.rows}" varStatus="no">
+                <tr><td>${no.count}</td>
+                <td><a href="/board/view.jsp?bdno=${r.bdno}">${r.title}</a></td>
+                <td>${r.userid}</td>
+                <td>${fn:substring(r.regdate,0,10)}</td>
+                <td>${r.views}</td></tr>
+               </c:forEach>
+               
                     </tbody>
                 <tfoot>
                     <tr><td colspan="5" class="tbnav">
@@ -88,5 +99,15 @@
                 <%@ include file="/layout/footer.jsp" %>
 
         </div>
+        <script>
+        	var newbtn = document.getElementById('newbtn');
+        	newbtn.addEventListener('click',go2write);
+        	
+        	function go2write(){
+        		location.href = '/board/write.jsp';
+        		
+        	}
+        </script>
+        
     </body>
 </html>
