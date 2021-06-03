@@ -5,7 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <title>세미프로젝트V1-join</title>
-        <link rel="stylesheet" href="css/base.css">
+        <link rel="stylesheet" href="/css/base.css">
         <style>
             #joinfrm { /*border: 1px solid red;*/ width:300px;
                     margin: 100px auto; }
